@@ -1,4 +1,4 @@
-#include "calculator.hpp"
+#include "natural.hpp"
 
 natural::natural(int v) {
     while (v > 0) {
