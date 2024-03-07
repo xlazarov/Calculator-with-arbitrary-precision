@@ -105,16 +105,10 @@ natural natural::operator*(const natural &n) const {
     delete_front_zeroes(result);
     return result;
 }
-/** Generally I would suggest to you this form:
-**  for (size_t i = 0, N = digits.size(); i < N; ++i)
-**  to avoid recompuation of 'digits.size()' in every loop iteration.
-**  Compiler optimizations may optimize this recomputation, but sometimes it is not possible
-**  for compiler so this suggested form helps compiler to produce fast good code.
-**/
 
 /** removes unnecessary zeros at the beginning of the number **/
 void natural::delete_front_zeroes(natural &n) {
-    while (!n.digits.empty() && n.digits.back() == 0)
+    for (size_t i = 0, N = digits.size(); i < N; ++i)
         n.digits.pop_back();
 }
 
@@ -153,9 +147,6 @@ natural natural::operator/(const natural &n) const {
             delete_front_zeroes(block);
 
             std::tie(block_result, rest) = divide_by_subtraction(block, n);
-/** also possible to use
-** auto [block_result, rest] = divide_by_subtraction(block, n);
-**/
 
             if (block_result.digits.empty()) {
                 result.digits.insert(result.digits.begin(), 1, 0);
@@ -421,20 +412,7 @@ natural natural::binary_to_decimal(const natural &num) const {
     return dec_value;
 }
 
-/* You can put any private test cases into this file. It will *not* be part of
- * the submission. */
-
 int main() {
-//    natural x1(10);
-//    natural x2(8);
-//    natural res_and = x1 & x1;
-//    assert(res_and == x1);
-//    natural res_or = x1 | x1;
-//    assert(res_or == x1);
-//    natural res_xor = x1 ^x1;
-//    natural res_xor1 = x1 ^ x2;
-//    assert(res_xor == 0);
-//    assert(res_xor1 == 2);
     natural a( 4 );
     natural b( 2 );
     natural zero( 0 );
@@ -442,5 +420,3 @@ int main() {
     natural vv = ( a & b );
     assert(vv == zero);
 }
- 
-reviewed by: Ing. Dávid Bolvanský on 2022-04-11 17:31 CEST
