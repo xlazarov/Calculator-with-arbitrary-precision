@@ -1,21 +1,18 @@
-
 #include <cassert>
 #include <stdexcept>
 #include <cstdint>
 #include <tuple>
 #include <vector>
 
-/* In this task, you will implement a class which represents
+/* Implementation of a class that represents
  * arbitrary-size natural numbers (including 0). In addition to the
- * methods prescribed below, the class must support the following:
+ * methods prescribed below, the class supports the following:
  *
  *  • arithmetic operators ‹+›, ‹-›, ‹*›, ‹/› and ‹%› (the last two
  *    implementing division and reminder),
  *  • all relational operators,
  *  • bitwise operators ‹^› (xor), ‹&› (and) and ‹|› (or).
  *
- * The usual preconditions apply (divisors are not 0, the second
- * operand of subtraction is not greater than the first).
  */
 
 class natural {
@@ -27,8 +24,6 @@ class natural {
     static void delete_front_zeroes(natural &n);
 
 public:
-    /* Construct a natural number, optionally from an integer. Throw
-     * ‹std::out_of_range› if ‹v› is negative. */
     explicit natural(int v = 0);
     natural(const natural &) = default;
 
